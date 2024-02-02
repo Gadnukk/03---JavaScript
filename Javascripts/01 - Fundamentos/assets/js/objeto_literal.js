@@ -48,6 +48,23 @@ console.log(entresPares);
 
 //?Bloquear el objeto para que no se pueda modificar las propiedades
 //?dentro del objeto.
-Object.freeze(personaje);
+Object.freeze(personaje.direccion);
+
+personaje.direccion.ubucacion= 'Carlos Calvo 1719';
+
+console.log(personaje.direccion);
+
+
+//?Como usar el metodo splite de un string
+let a = '1234;5678;9101;1213;1415';
+let arr = a.split(';');
+console.log(arr);
+
+//?Listado de todas las propiedades de dicho obejto
+
+const propiedades = Object.getOwnPropertyNames(personaje);
+const valores = Object.values(personaje);
+console.log(propiedades , valores);
+
 
 
