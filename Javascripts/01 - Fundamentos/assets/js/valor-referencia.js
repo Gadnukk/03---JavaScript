@@ -46,3 +46,13 @@ otrasFrutas.push('Mango');
 
 console.table({frutas,otrasFrutas});
 
+
+const testVar = (param1) => {
+    variable = param1;
+    return 1;
+};
+
+console.log(testVar('x'));
+
+
+
