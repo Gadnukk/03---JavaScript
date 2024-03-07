@@ -1,0 +1,28 @@
+
+html, body {
+    margin: 0px;
+    background-color: #2f4f30;
+    color: white; /** Texto en blanco */
+}
+
+
+.titulo{
+    text-align: center;
+    background-color: black;
+    /* color: white; */
+    padding: 20px;
+    font-size: 25px;
+}
+
+.carta{
+    position: relative;
+    width: 150px;
+    left: 100px;
+    margin-left: -75px; /**Es para que las cartas esten sobre expuestas  */
+}
+
+/** Para que los div tengan un ancho estatico con o sin cartas  */
+/** con # agarro los id de cada div y le asigno un ancho*/
+#computadora-cartas , #jugador-cartas {
+    height: 230px;
+}
