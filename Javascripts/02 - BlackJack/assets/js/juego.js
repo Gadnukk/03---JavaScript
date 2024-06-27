@@ -11,6 +11,26 @@ let deck         = [];
 const tipos      = ['C','D','H','S']; //*para el otro for of
 const especiales = ['A','J','K','Q']; //*para el otro for of
 
+//*Referencias a los botones html (cuando se hacen muchos peridos a 
+//* un mismo elemento en conveniente agregarlo a una variable)
+const btnPedir = document.querySelector('#btnPedir');
+// console.log(btnPedir);
+const btnNuevo = document.querySelector('#btnNuevo');
+// console.log(btnNuevo);
+const btnDetener = document.querySelector('#btnDetener');
+// console.log(btnDetener);
+//?  const jugadorPuntos = document.querySelector('small');
+//? Usamos el ALL para obtener todos los small
+const jugadorPuntos = document.querySelectorAll('small');
+// console.log(jugadorPuntos);
+const refCartas = document.querySelector('#jugador-cartas');
+
+let puntosJugador = 0,
+    puntosComputadora = 0;
+
+
+
+
 //*Función para baraja
 //*Las cartas empiezan desde el 2 hasta el 10 
 //* y AJKQ , luego se repite el patron CDHS
@@ -18,7 +38,7 @@ const crearDeck = ()=>{
 
     for (let i=2; i<= 10; i++) {
         // deck.push(`${i} C`);
-        for ( let tipo of tipos){ //!Cuando necesitamos el valor
+        for ( let tipo of tipos){ //!Toma el valor de cada elemento del array
             deck.push(`${i}${tipo}`);//?Para cada numero todos los tipos
         }
     }
@@ -54,8 +74,8 @@ const pedirCarta = () => {
     //*Tiene sentido que la variable sea constante porque no va a variar
     //*dentro de la función.
     const carta = deck.pop() //*elimina el último valor
-    console.log(deck);
-    console.log(carta);
+    // console.log(deck);
+    // console.log(carta);
     
     return carta;
 }
@@ -108,4 +128,39 @@ console.log({valor});
 
 // crearEspeciales();
 
+
+//*Event
+                                     // !CALLBACK 
+//? btnPedir.addEventListener('click', function() {} );
+//? btnPedir.addEventListener('click', () => {} ); 
+                                    //!|||||||||||| 
+
+btnPedir.addEventListener('click', () => {
+    
+    const carta = pedirCarta();
+    console.log(carta);
+    
+     puntosJugador = puntosJugador + valorCarta(carta);
+    
+    console.log(puntosJugador);
+    
+    //?Primer Small 
+    jugadorPuntos[0].innerText = puntosJugador;
+    //?Puntos Maquina jugadorPuntos[1]
+    
+    //?<img class="carta" src="assets/cartas/3H.png" alt="">
+    const imgCartaJ = document.createElement('img');
+    imgCartaJ.src = `assets/cartas/${carta}.png`;
+    imgCartaJ.classList.add('carta');
+    refCartas.append( imgCartaJ );
+
+    if (puntosJugador > 21) {
+        console.log('Lo siento mucho, perdiste');
+        btnPedir.disabled = true;        
+    } else if (puntosJugador === 21) {
+        console.log('21, ganaste');
+        btnPedir.disabled = true; 
+    }
+
+} );                                    
 
